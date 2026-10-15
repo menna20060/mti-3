@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script src="theme.js"></script>
+<title>MTI | Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Cairo:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--bg:#000;--fg:#fff;--muted:rgba(255,255,255,.6);--serif:'Instrument Serif','Cairo',serif;--sans:'Barlow','Cairo',ui-sans-serif,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100svh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+::selection{background:rgba(255,255,255,.25);color:#000}
+:focus-visible{outline:3px solid rgba(255,255,255,.5);outline-offset:2px}
+.serif{font-family:var(--serif);font-style:italic}
+[dir=rtl] .serif{font-style:normal;font-weight:600}
+/* liquid glass (identical to Prism) */
+.lg,.lgs{background:rgba(255,255,255,.01);background-blend-mode:luminosity;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:inset 0 1px 1px rgba(255,255,255,.1);position:relative;overflow:hidden}
+.lgs{backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);box-shadow:4px 4px 4px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15)}
+.lg::before,.lgs::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.4px;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.15) 20%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.15) 80%,rgba(255,255,255,.45));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.rise{animation:rise .6s ease-out both}
+.rs{animation:rs .6s ease-out both}
+.wr{display:inline-block;animation:wr .7s ease-out both}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes rs{from{transform:translateY(20px)}to{transform:none}}
+@keyframes wr{0%{transform:translateY(50px)}50%{transform:translateY(-5px)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.rise,.rs,.wr{animation:none}}
+/* video backdrop */
+.vb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.fb,.ft{position:absolute;inset-inline:0;height:200px;z-index:1;pointer-events:none}
+.fb{bottom:0;background:linear-gradient(to top,#000,transparent)}
+.ft{top:0;background:linear-gradient(to bottom,#000,transparent)}
+.sec{position:relative;overflow:hidden}
+.wrap{position:relative;z-index:2;max-width:72rem;margin-inline:auto}
+.pad{padding:6rem 1.5rem}
+@media(min-width:768px){.pad{padding-inline:4rem}}
+@media(min-width:1024px){.pad{padding-inline:6rem}}
+/* pieces */
+.pill{display:inline-block;border-radius:999px;padding:.25rem .875rem;font-size:.75rem;font-weight:500}
+.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:999px;padding:.625rem 1.25rem;font:500 .875rem var(--sans);color:#fff;border:0;cursor:pointer;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.625rem 1.25rem;font:500 .875rem var(--sans);background:#fff;color:#000;border:0;cursor:pointer;white-space:nowrap}
+.btn.sm{padding:.4rem 1rem}
+.ghost{background:none;color:#fff}.ghost:hover{background:rgba(255,255,255,.1)}
+h2.h{font-size:2.25rem;line-height:.9;letter-spacing:-.025em;font-weight:400}
+@media(min-width:768px){h2.h{font-size:3rem}}@media(min-width:1024px){h2.h{font-size:3.75rem}}
+.p{font-size:.875rem;line-height:1.65;font-weight:300;color:var(--muted)}
+.ctr{display:flex;flex-direction:column;align-items:center;text-align:center}
+svg{width:1.1em;height:1.1em;flex:none}[dir=rtl] .ar{transform:scaleX(-1)}
+/* nav */
+header{position:fixed;inset-inline:0;top:1rem;z-index:50;padding:0 1.5rem}
+@media(min-width:1024px){header{padding:0 4rem}}
+nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+@media(min-width:768px){nav{display:grid;grid-template-columns:1fr auto 1fr}}
+.logo{display:flex;align-items:center;gap:.5rem;font-size:1.125rem;font-weight:600;letter-spacing:-.02em;justify-self:start}
+.bar{display:flex;align-items:center;gap:.25rem;border-radius:999px;padding:.375rem}
+.links{display:none}@media(min-width:768px){.links{display:flex}.bar{padding-inline-start:.5rem}}
+.links a{padding:.5rem .75rem;font-size:.875rem;font-weight:500;color:rgba(255,255,255,.9)}.links a:hover{color:#fff}
+.lang{background:none;border:0;color:#fff;font:500 .8rem var(--sans);padding:.5rem .75rem;cursor:pointer;border-radius:999px}.lang:hover{background:rgba(255,255,255,.1)}
+/* hero */
+#home{min-height:100svh;display:flex;flex-direction:column}
+.hin{position:relative;z-index:10;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:9rem 1.5rem 0}
+@media(min-width:768px){.hin{padding-top:11rem}}
+.hin h1{margin-top:1.5rem;max-width:48rem;font-size:3.75rem;line-height:.85;letter-spacing:-2px;font-weight:400}
+[dir=rtl] .hin h1{line-height:1.05;letter-spacing:0}
+@media(min-width:768px){.hin h1{font-size:4.5rem}}@media(min-width:1024px){.hin h1{font-size:5.5rem;letter-spacing:-4px}[dir=rtl] .hin h1{letter-spacing:0}}
+h1 span.w{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:0 .3em}
+.part{margin-top:auto;padding:4rem 0 2rem;gap:1.5rem}
+.part ul{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 3rem}
+.part li{font-size:1.5rem;letter-spacing:-.02em}@media(min-width:768px){.part li{font-size:1.875rem}}
+/* process */
+#process{min-height:700px;display:flex;align-items:center;padding:8rem 1.5rem}
+/* features */
+.row{display:flex;flex-direction:column;align-items:center;gap:2.5rem;margin-top:4rem}
+@media(min-width:1024px){.row{flex-direction:row;gap:4rem;margin-top:6rem}.row.rev{flex-direction:row-reverse}}
+.row>*{flex:1}.row h3{font-size:1.875rem;line-height:.95;letter-spacing:-.02em;font-weight:400}
+@media(min-width:768px){.row h3{font-size:2.25rem}}
+.media{position:relative;aspect-ratio:4/3;width:100%;border-radius:1rem;overflow:hidden}
+/* grids */
+.g{display:grid;gap:1.5rem;margin-top:4rem;grid-template-columns:1fr}
+@media(min-width:768px){.g.b{grid-template-columns:repeat(2,1fr)}.g.t{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.g.b{grid-template-columns:repeat(4,1fr)}}
+.card{border-radius:1rem;padding:1.5rem}
+.ico{display:flex;width:2.5rem;height:2.5rem;border-radius:50%;align-items:center;justify-content:center}
+.card h3{margin-top:1.5rem;font-size:1.125rem;font-weight:400}.card .p{margin-top:.5rem}
+.tag{display:block;margin-top:1.25rem;font-size:.75rem;color:rgba(255,255,255,.5)}
+/* stats */
+#stats{padding:8rem 1.5rem}
+dl{border-radius:1.5rem;padding:3rem;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;text-align:center}
+@media(min-width:768px){dl{padding:4rem}}@media(min-width:1024px){dl{grid-template-columns:repeat(4,1fr)}}
+dl div{display:flex;flex-direction:column;gap:.5rem}dt{order:2;font-size:.875rem;font-weight:300;color:var(--muted)}
+dd{font-size:2.25rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}@media(min-width:768px){dd{font-size:3rem}}@media(min-width:1024px){dd{font-size:3.75rem}}
+/* cta + footer */
+#contact{padding:8rem 1.5rem 2rem}
+.cl{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 2rem;margin-top:2rem;font-size:.875rem;color:rgba(255,255,255,.8)}
+footer{margin-top:8rem;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;font-size:.75rem;color:rgba(255,255,255,.4)}
+@media(min-width:640px){footer{flex-direction:row}}
+footer nav{display:flex;gap:1.5rem}footer a:hover{color:#fff}
+
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:2.5rem}
+.chip{border:0;color:#fff;font:500 .8rem var(--sans);padding:.5rem 1rem;border-radius:999px;cursor:pointer;background:rgba(255,255,255,.04)}
+.chip.on{background:#fff;color:#000}
+.pc{display:flex;flex-direction:column;gap:.75rem;padding:1.75rem}
+.pc[hidden]{display:none}
+.pc .n{font-size:2.5rem;letter-spacing:-.02em;line-height:1}
+.pc h3{margin:0;font-size:1.25rem}
+.soc{display:flex;gap:.5rem;justify-content:center;margin-top:2rem}
+.soc a{width:2.25rem;height:2.25rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:1.5rem;background:rgba(0,0,0,.7)}
+.modal.on{display:flex}
+.box{width:100%;max-width:32rem;border-radius:1.5rem;padding:2rem;background:rgba(10,10,10,.92);position:relative}
+.box h3{font-size:1.75rem;font-weight:400;margin-bottom:1rem}.box h4{font-size:.95rem;font-weight:600;margin-top:1.25rem}
+.box .p{margin-top:.4rem;color:rgba(255,255,255,.7)}.box .note{margin-top:1.5rem;font-size:.75rem;color:rgba(255,255,255,.4)}
+.box button.x{position:absolute;top:1rem;inset-inline-end:1rem;background:none;border:0;color:#fff;font-size:1.25rem;cursor:pointer}
+[dir=rtl]{--sans:'Cairo','Barlow',sans-serif}
+.pgs{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;margin-top:3rem;font-size:.875rem;color:rgba(255,255,255,.7)}.pgs a:hover{color:#fff}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:2.5rem}.tb{border:0;color:#fff;font:500 .8rem var(--sans);padding:.5rem 1rem;border-radius:999px;cursor:pointer;background:rgba(255,255,255,.04)}.tb.on{background:#fff;color:#000}
+.pnl{margin:2rem auto 0;max-width:40rem;padding:2rem;border-radius:1.5rem}.pnl[hidden]{display:none}.pnl ul{margin-top:1.25rem;display:flex;flex-direction:column;gap:.6rem}.pnl li{font-size:.9rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem}.pnl li::before{content:"✓";color:#fff}
+.chs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}.chs .pill{font-weight:400;color:rgba(255,255,255,.85)}
+.spec{margin-top:.25rem;display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:.8rem}.spec dt{order:0;color:rgba(255,255,255,.5);font-size:.8rem}.spec dd{font-size:.8rem;letter-spacing:0;font-family:var(--sans);text-align:start}
+.cr{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-top:1rem}
+.bar.lg{overflow:visible}.links .nl{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px}.links .nl.on{background:rgba(255,255,255,.12);color:#fff}.links .nl:hover{background:rgba(255,255,255,.08)}
+.has-dd{position:relative;display:flex}.dd{position:absolute;top:100%;inset-inline-start:0;padding-top:.6rem;display:none;min-width:15rem;z-index:60}.dd-in{border-radius:1.25rem;padding:.4rem;background:rgba(8,8,8,.94)}
+.has-dd:hover .dd,.has-dd:focus-within .dd{display:block}.links .dd a{display:block;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;color:rgba(255,255,255,.85)}.links .dd a:hover{background:rgba(255,255,255,.1);color:#fff}
+.bg{display:inline-flex;padding:.4rem .6rem}@media(min-width:768px){.bg{display:none}}
+.mnav{display:none;margin-top:.75rem;border-radius:1.5rem;padding:.5rem;flex-direction:column;background:rgba(8,8,8,.94)}.mnav.on{display:flex}@media(min-width:768px){.mnav{display:none!important}}
+.mnav a{padding:.7rem 1rem;border-radius:999px;font-size:.9rem;font-weight:500}.mnav a.on{background:rgba(255,255,255,.12)}.mnav a.sub{padding-inline-start:2rem;font-size:.8rem;color:rgba(255,255,255,.7);font-weight:400}
+.scrim{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s}.scrim.on{opacity:1;pointer-events:auto}
+.panel{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(28rem,100%);z-index:90;overflow-y:auto;background:rgba(8,8,8,.97);padding:1.5rem;border-inline-start:1px solid rgba(255,255,255,.15);transform:translateX(100%);transition:transform .35s ease}
+[dir=rtl] .panel{transform:translateX(-100%)}.panel.on,[dir=rtl] .panel.on{transform:none}
+.ph{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.5rem}.pe{font-size:.75rem;color:rgba(255,255,255,.5)}.ph h3{font-size:2rem;font-weight:400;margin-top:.25rem}
+.xb{background:none;border:0;color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;padding:.25rem .5rem;border-radius:999px}.xb:hover{background:rgba(255,255,255,.1)}
+.pimg{aspect-ratio:4/3;border-radius:1rem;background:rgba(255,255,255,.04);padding:2rem;margin-bottom:1.25rem}.pimg svg,.cimg svg{width:100%;height:100%}
+.cimg{aspect-ratio:16/10;border-radius:.75rem;background:rgba(255,255,255,.04);padding:1rem;margin-bottom:.5rem}
+.prow{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.875rem}.prow b{font-weight:500;color:rgba(255,255,255,.55)}
+.pbt{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
+.pcard,.pc{cursor:pointer;transition:background .2s}.pcard:hover,.pc:hover{background:rgba(255,255,255,.04)}.hid{display:none!important}
+.lmw{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:3rem}
+.lbx{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:1.5rem;background:rgba(0,0,0,.8)}.lbx.on{display:flex}
+.lbb{width:100%;max-width:56rem;border-radius:1.5rem;padding:1rem;position:relative;background:rgba(10,10,10,.96)}.lbb .xb{position:absolute;top:1.5rem;inset-inline-end:1.5rem;z-index:3;background:rgba(0,0,0,.5)}
+.art{aspect-ratio:16/9;border-radius:1rem;overflow:hidden}.art svg{width:100%;height:100%;display:block}.cap{padding:1.25rem .75rem .5rem}.cap b{font-size:1.5rem;font-weight:400}.cap p{margin-top:.5rem}
+</style>
+<script>document.documentElement.classList.add("js")</script>
+<style id="mti-smooth">/* ===== MTI smooth layer ===== */
+:root{--ease:cubic-bezier(.22,1,.36,1)}
+@keyframes mtiIn{from{opacity:0}to{opacity:1}}
+@keyframes mtiUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes mtiPop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+/* page enter / leave */
+body{animation:mtiIn .5s ease both}
+html.leaving body{opacity:0;transition:opacity .26s ease}
+main{transition:opacity .2s ease}main.lswap{opacity:0}
+/* scroll reveal (replaces the fire-on-load .rise) */
+html.js .rise{animation:none;opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease),background-color .3s ease,border-color .3s ease}
+html.js .rise.in{opacity:1;transform:none}
+html.js .rise.done{transition:transform .4s var(--ease),opacity .4s ease,background-color .3s ease,border-color .3s ease}
+html.js .rise.done.pcard:hover,html.js .rise.done.pc:hover{transform:translateY(-4px)}
+/* background videos fade in instead of popping */
+html.js .vb{opacity:0;transition:opacity 1.2s ease}html.js .vb.ready{opacity:1}
+/* nav dropdown + mobile menu */
+.dd{display:block;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility 0s linear .25s}
+.has-dd:hover .dd,.has-dd:focus-within .dd{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.links .nl svg{transition:transform .25s var(--ease)}.has-dd:hover .nl svg{transform:rotate(180deg)}
+.mnav.on{animation:mtiPop .3s var(--ease)}
+/* buttons, chips, links */
+.btn,.gbtn,.chip,.tb,.lang,.links a,.mnav a,.dd a,.pgs a,footer a,.xb,.soc a{transition:color .25s ease,background-color .25s ease,border-color .25s ease,transform .25s var(--ease),opacity .25s ease}
+.btn:hover,.gbtn:hover{transform:translateY(-1px)}.btn:active,.gbtn:active{transform:none}
+.chip:hover:not(.on),.tb:hover:not(.on){background:rgba(255,255,255,.1)}
+/* modal / lightbox / panel / tab + filter swaps */
+.modal.on,.lbx.on{animation:mtiIn .25s ease}
+.modal.on .box,.lbx.on .lbb{animation:mtiPop .35s var(--ease)}
+.pc.swap,.pnl.swap{animation:mtiUp .5s var(--ease) both}
+.pnl:not([hidden]){animation:mtiUp .5s var(--ease) both}
+@media(prefers-reduced-motion:reduce){body{animation:none}html.js .rise{opacity:1;transform:none;transition:none}html.js .vb{opacity:1;transition:none}.pnl:not([hidden]),.pc.swap{animation:none}.dd{transition:none}}
+/* footer video: dimmed + softened so the text stays readable */
+#cta .vb,#contact .vb{filter:brightness(.55) blur(2px);transform:scale(1.05)}
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="logo" aria-label="MTI"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:1.5rem;height:1.5rem"><path d="M3 20V9l9-5 9 5v11M8 20v-6h8v6"/></svg>MTI</a>
+    <div class="lg bar">
+      <div class="links"><a href="index.html" class="nl" data-en="Home" data-ar="الرئيسية">Home</a><a href="about.html" class="nl" data-en="About Us" data-ar="من نحن">About Us</a><div class="has-dd"><a href="theater.html" class="nl" aria-haspopup="true"><span data-en="Theater Solutions" data-ar="حلول المسارح">Theater Solutions</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:.8em;height:.8em"><path d="m6 9 6 6 6-6"/></svg></a><div class="dd" role="menu"><div class="dd-in lgs"><a href="theater.html#svc-arch" role="menuitem" data-en="Architecture &amp; Design" data-ar="العمارة والتصميم">Architecture &amp; Design</a><a href="theater.html#svc-audio" role="menuitem" data-en="Pro Audio" data-ar="الصوتيات الاحترافية">Pro Audio</a><a href="theater.html#svc-light" role="menuitem" data-en="Pro Lighting" data-ar="الإضاءة الاحترافية">Pro Lighting</a><a href="theater.html#svc-visual" role="menuitem" data-en="Visual &amp; Effects" data-ar="المؤثرات البصرية">Visual &amp; Effects</a><a href="theater.html#svc-mech" role="menuitem" data-en="Mechanism" data-ar="الميكانيزم">Mechanism</a><a href="theater.html#svc-care" role="menuitem" data-en="Annual Care Packages" data-ar="باقات الصيانة السنوية">Annual Care Packages</a></div></div></div><a href="projects.html" class="nl on" data-en="Our Projects" data-ar="مشاريعنا">Our Projects</a></div>
+      <button class="lang" id="lang" aria-label="Switch language">عربي</button>
+      <a href="contact.html" class="btn sm"><span data-en="Contact Us" data-ar="تواصل معنا">Contact Us</span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <button class="lang bg" id="bg" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1.25rem;height:1.25rem"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+  <div class="mnav lg" id="mnav"><a href="index.html" class="m" data-en="Home" data-ar="الرئيسية">Home</a><a href="about.html" class="m" data-en="About Us" data-ar="من نحن">About Us</a><a href="theater.html" class="m" data-en="Theater Solutions" data-ar="حلول المسارح">Theater Solutions</a><a class="sub" href="theater.html#svc-arch" data-en="Architecture &amp; Design" data-ar="العمارة والتصميم">Architecture &amp; Design</a><a class="sub" href="theater.html#svc-audio" data-en="Pro Audio" data-ar="الصوتيات الاحترافية">Pro Audio</a><a class="sub" href="theater.html#svc-light" data-en="Pro Lighting" data-ar="الإضاءة الاحترافية">Pro Lighting</a><a class="sub" href="theater.html#svc-visual" data-en="Visual &amp; Effects" data-ar="المؤثرات البصرية">Visual &amp; Effects</a><a class="sub" href="theater.html#svc-mech" data-en="Mechanism" data-ar="الميكانيزم">Mechanism</a><a class="sub" href="theater.html#svc-care" data-en="Annual Care Packages" data-ar="باقات الصيانة السنوية">Annual Care Packages</a><a href="projects.html" class="m on" data-en="Our Projects" data-ar="مشاريعنا">Our Projects</a><a href="contact.html" class="m" data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a></div>
+</header>
+<script>(function(){var b=document.getElementById("bg"),m=document.getElementById("mnav");b.addEventListener("click",function(){var o=m.classList.toggle("on");b.setAttribute("aria-expanded",o)});m.addEventListener("click",function(e){if(e.target.tagName==="A")m.classList.remove("on")})})()</script>
+<main>
+<section class="sec" style="padding:10rem 1.5rem 4rem"><video class="vb" src="cta.mp4" autoplay loop muted playsinline aria-hidden="true" tabindex="-1"></video><div class="fb"></div><div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:rgba(0,0,0,.45)"></div><div class="wrap ctr" style="max-width:48rem"><span class="lg pill rise" style="margin-bottom:1rem" data-en="Our Projects" data-ar="مشاريعنا"></span><h1 id="h1" class="serif" style="font-size:3rem;line-height:.95;letter-spacing:-.02em;font-weight:400" data-en="Spaces we have equipped" data-ar="قاعات جهّزناها"></h1></div></section>
+<section class="pad"><div class="wrap"><div class="chips" id="chips"><button class="chip on" data-chip="all" data-en="All" data-ar="الكل"></button><button class="chip" data-chip="theaters" data-en="Theaters" data-ar="المسارح"></button><button class="chip" data-chip="universities" data-en="Universities" data-ar="الجامعات"></button><button class="chip" data-chip="sports" data-en="Sports" data-ar="الرياضة"></button><button class="chip" data-chip="conference" data-en="Conference" data-ar="المؤتمرات"></button></div><div class="g t" id="pgrid"><article class="rise lg pc" data-lb="0" tabindex="0" role="button" data-s="theaters"><span class="lgs pill" style="align-self:flex-start" data-en="Theaters" data-ar="المسارح"></span><h3 class="serif" data-en="City Theater, Cairo" data-ar="مسرح المدينة، القاهرة"></h3><p class="p" data-en="Egypt · 2023" data-ar="مصر · 2023"></p><div class="n serif" dir="ltr">820</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article><article class="rise lg pc" data-lb="1" tabindex="0" role="button" data-s="universities"><span class="lgs pill" style="align-self:flex-start" data-en="Universities" data-ar="الجامعات"></span><h3 class="serif" data-en="University Auditorium" data-ar="قاعة جامعية"></h3><p class="p" data-en="Egypt · 2022" data-ar="مصر · 2022"></p><div class="n serif" dir="ltr">1,200</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article><article class="rise lg pc" data-lb="2" tabindex="0" role="button" data-s="sports"><span class="lgs pill" style="align-self:flex-start" data-en="Sports" data-ar="الرياضة"></span><h3 class="serif" data-en="Indoor Sports Hall" data-ar="صالة رياضية مغطاة"></h3><p class="p" data-en="Saudi Arabia · 2024" data-ar="السعودية · 2024"></p><div class="n serif" dir="ltr">2,400</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article><article class="rise lg pc" data-lb="3" tabindex="0" role="button" data-s="conference"><span class="lgs pill" style="align-self:flex-start" data-en="Conference" data-ar="المؤتمرات"></span><h3 class="serif" data-en="Conference Centre" data-ar="مركز مؤتمرات"></h3><p class="p" data-en="Saudi Arabia · 2023" data-ar="السعودية · 2023"></p><div class="n serif" dir="ltr">640</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article><article class="rise lg pc" data-lb="4" tabindex="0" role="button" data-s="theaters"><span class="lgs pill" style="align-self:flex-start" data-en="Theaters" data-ar="المسارح"></span><h3 class="serif" data-en="Cultural Hall" data-ar="قاعة ثقافية"></h3><p class="p" data-en="Egypt · 2021" data-ar="مصر · 2021"></p><div class="n serif" dir="ltr">450</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article><article class="rise lg pc" data-lb="5" tabindex="0" role="button" data-s="universities"><span class="lgs pill" style="align-self:flex-start" data-en="Universities" data-ar="الجامعات"></span><h3 class="serif" data-en="Lecture Hall Complex" data-ar="مجمع قاعات محاضرات"></h3><p class="p" data-en="Egypt · 2024" data-ar="مصر · 2024"></p><div class="n serif" dir="ltr">980</div><span class="tag" style="margin:0" data-en="Seats" data-ar="مقعد"></span></article></div><div class="rise ctr" style="margin-top:6rem"><span class="lg pill" data-en="Clients" data-ar="عملاؤنا"></span><h3 class="serif" data-en="Institutions that trust us" data-ar="مؤسسات وثقت بنا" style="font-size:1.875rem;font-weight:400;margin-top:1rem"></h3><p class="p" data-en="We are committed to always delivering the best, fitted to your sector and needs." data-ar="نحن ملتزمون بتقديم الأفضل دائما وبما يتناسب مع قطاع أعمالك واحتياجاتك." style="margin-top:.75rem;max-width:32rem"></p><ul style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 2.5rem;margin-top:1.5rem"><li class="serif" style="font-size:1.5rem">Wise</li><li class="serif" style="font-size:1.5rem">MIS</li><li class="serif" style="font-size:1.5rem">ELS</li><li class="serif" style="font-size:1.5rem">MS</li><li class="serif" style="font-size:1.5rem">NG</li><li class="serif" style="font-size:1.5rem">RCIS</li><li class="serif" style="font-size:1.5rem">Summits</li></ul></div></div></section>
+<!-- CTA + FOOTER on the footer video -->
+<section id="cta" class="sec">
+  <video class="vb" src="cta.mp4" autoplay loop muted playsinline aria-hidden="true" tabindex="-1"></video>
+  <div class="ft"></div>
+  <div class="wrap">
+    <div class="rise ctr">
+      <h2 class="h serif" style="max-width:48rem" data-en="Your vision starts here." data-ar="رؤيتك تبدأ من هنا."></h2>
+      <p class="p" style="margin-top:1.5rem;max-width:28rem;font-size:1rem" data-en="Tell us about your hall. Our Cairo team will reply within the working week, Sunday to Thursday." data-ar="حدّثنا عن قاعتك. سيرد فريقنا في القاهرة خلال أسبوع العمل، من الأحد إلى الخميس."></p>
+      <div style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center">
+        <a class="gbtn lgs" href="mailto:info@mayorkatrade.com" data-en="Email us" data-ar="راسلنا">Email us</a>
+        <a class="btn" href="https://wa.me/201008199777" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
+      </div>
+      <div class="cl"><span dir="ltr">+20 100 819 9777</span><span dir="ltr">+20 2 26582212</span><span dir="ltr">info@mayorkatrade.com</span></div>
+      <div class="cl" style="margin-top:.75rem;color:rgba(255,255,255,.6)"><span data-en="Cairo: Villa 99, West Arabella, 5th Settlement, New Cairo" data-ar="القاهرة: فيلا 99، ويست أرابيلا، التجمع الخامس، القاهرة الجديدة"></span><span data-en="Riyadh: Al Wizarat, Riyadh, Saudi Arabia" data-ar="الرياض: الوزارات، الرياض، المملكة العربية السعودية"></span></div>
+    </div>
+    <nav class="pgs" aria-label="Pages"><a href="about.html" data-en="About" data-ar="من نحن">About</a><a href="seats.html" data-en="Seats" data-ar="المقاعد">Seats</a><a href="theater.html" data-en="Theater Solutions" data-ar="حلول المسارح">Theater Solutions</a><a href="telescopic.html" data-en="Telescopic Stands" data-ar="المدرجات القابلة للطي">Telescopic Stands</a><a href="options.html" data-en="Options" data-ar="الخيارات">Options</a><a href="projects.html" data-en="Projects" data-ar="المشاريع">Projects</a><a href="downloads.html" data-en="Downloads" data-ar="التحميلات">Downloads</a><a href="contact.html" data-en="Contact" data-ar="تواصل">Contact</a></nav>
+    <div class="soc"><a class="lg" href="#" target="_blank" rel="noopener" aria-label="Facebook">f</a><a class="lg" href="#" target="_blank" rel="noopener" aria-label="X">𝕏</a><a class="lg" href="#" target="_blank" rel="noopener" aria-label="Instagram">ig</a></div>
+    <footer>
+      <p data-en="© 2026 Mayorka Trade & Investment. All rights reserved." data-ar="© 2026 مايوركا للتجارة والاستثمار. جميع الحقوق محفوظة."></p>
+      <nav><a href="#" data-legal="privacy" data-en="Privacy" data-ar="الخصوصية">Privacy</a><a href="#" data-legal="terms" data-en="Terms" data-ar="الشروط">Terms</a><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></nav>
+    </footer>
+  </div>
+</section>
+</main>
+<div class="modal" id="legal" role="dialog" aria-modal="true" aria-labelledby="lt"><div class="box lgs">
+  <button class="x" id="lx" aria-label="Close">×</button>
+  <div id="l-privacy" hidden><h3 class="serif" id="lt" data-en="Privacy" data-ar="الخصوصية"></h3>
+    <h4 data-en="What we collect" data-ar="ما نجمعه"></h4><p class="p" data-en="This site does not collect personal data. There are no accounts, forms or newsletters." data-ar="لا يجمع هذا الموقع أي بيانات شخصية. لا توجد حسابات أو نماذج أو نشرات بريدية."></p>
+    <h4 data-en="Contact" data-ar="التواصل"></h4><p class="p" data-en="Messages sent by phone, email or WhatsApp are handled by the MTI team only." data-ar="الرسائل المرسلة عبر الهاتف أو البريد أو واتساب يتعامل معها فريق MTI فقط."></p><p class="note" data-en="Draft text for review. Final legal wording to be supplied." data-ar="نص مبدئي للمراجعة. يُستبدل بالصياغة القانونية النهائية."></p></div>
+  <div id="l-terms" hidden><h3 class="serif" data-en="Terms" data-ar="الشروط"></h3>
+    <h4 data-en="Use of this site" data-ar="استخدام الموقع"></h4><p class="p" data-en="Content is for information only. It is not an offer, a quotation or a price list." data-ar="المحتوى للتعريف فقط. وهو ليس عرضًا ولا تسعيرًا ولا قائمة أسعار."></p>
+    <h4 data-en="Specifications" data-ar="المواصفات"></h4><p class="p" data-en="Specifications and images may change without notice." data-ar="قد تتغير المواصفات والصور دون إشعار."></p><p class="note" data-en="Draft text for review. Final legal wording to be supplied." data-ar="نص مبدئي للمراجعة. يُستبدل بالصياغة القانونية النهائية."></p></div>
+</div></div>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('lang'),h1=document.getElementById('h1');
+  function words(){
+    var t=h1.getAttribute('data-'+root.lang);
+    h1.innerHTML='<span class="w" dir="auto">'+t.split(' ').map(function(w,i){return '<span class="wr" style="animation-delay:'+i*100+'ms">'+w+'</span>'}).join(' ')+'</span>';
+  }
+  function apply(l){
+    root.lang=l;root.dir=l==='ar'?'rtl':'ltr';
+    document.querySelectorAll('[data-en]').forEach(function(e){if(e!==h1)e.innerHTML=e.getAttribute('data-'+l)});
+    btn.textContent=l==='ar'?'EN':'عربي';
+    document.title=l==='ar'?'MTI | مايوركا للتجارة والاستثمار':'MTI | Mayorka Trade & Investment';
+    words();
+    try{localStorage.setItem('mti-lang',l)}catch(e){}
+  }
+
+  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c)});
+    document.querySelectorAll('.pc').forEach(function(p){p.hidden=c.dataset.chip!=='all'&&p.dataset.s!==c.dataset.chip});
+  })});
+  var lg=document.getElementById('legal');
+  function openL(k){document.getElementById('l-privacy').hidden=k!=='privacy';document.getElementById('l-terms').hidden=k!=='terms';lg.classList.add('on');document.getElementById('lx').focus()}
+  function closeL(){lg.classList.remove('on')}
+  document.querySelectorAll('[data-legal]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openL(a.dataset.legal)})});
+  document.getElementById('lx').addEventListener('click',closeL);
+  lg.addEventListener('click',function(e){if(e.target===lg)closeL()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeL()});
+  btn.addEventListener('click',function(){apply(root.lang==='ar'?'en':'ar')});
+  var s='en';try{s=localStorage.getItem('mti-lang')||'en'}catch(e){}
+  apply(s);
+})();
+</script>
+<!--OV--><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262626"/><stop offset="1" stop-color="#000"/></linearGradient><g id="sc0"><rect width="1600" height="900" fill="url(#sg)"/><polygon points="720,0 880,0 1180,470 420,470" fill="#fff" opacity=".14"/><rect x="420" y="440" width="760" height="14" fill="#bdbdbd" opacity=".5"/><path d="M543 474h32v26h-32zM582 474h32v26h-32zM622 474h32v26h-32zM661 474h32v26h-32zM701 474h32v26h-32zM741 474h32v26h-32zM780 474h32v26h-32zM820 474h32v26h-32zM859 474h32v26h-32zM899 474h32v26h-32zM939 474h32v26h-32zM978 474h32v26h-32zM1018 474h32v26h-32z" fill="#d9d9d9" opacity="0.30"/><path d="M543 500h32v6h-32zM582 500h32v6h-32zM622 500h32v6h-32zM661 500h32v6h-32zM701 500h32v6h-32zM741 500h32v6h-32zM780 500h32v6h-32zM820 500h32v6h-32zM859 500h32v6h-32zM899 500h32v6h-32zM939 500h32v6h-32zM978 500h32v6h-32zM1018 500h32v6h-32z" fill="#fff" opacity="0.30"/><path d="M472 515h38v31h-38zM519 515h38v31h-38zM566 515h38v31h-38zM613 515h38v31h-38zM660 515h38v31h-38zM706 515h38v31h-38zM753 515h38v31h-38zM800 515h38v31h-38zM847 515h38v31h-38zM894 515h38v31h-38zM940 515h38v31h-38zM987 515h38v31h-38zM1034 515h38v31h-38zM1081 515h38v31h-38z" fill="#d9d9d9" opacity="0.39"/><path d="M472 546h38v7h-38zM519 546h38v7h-38zM566 546h38v7h-38zM613 546h38v7h-38zM660 546h38v7h-38zM706 546h38v7h-38zM753 546h38v7h-38zM800 546h38v7h-38zM847 546h38v7h-38zM894 546h38v7h-38zM940 546h38v7h-38zM987 546h38v7h-38zM1034 546h38v7h-38zM1081 546h38v7h-38z" fill="#fff" opacity="0.39"/><path d="M395 556h44v36h-44zM449 556h44v36h-44zM503 556h44v36h-44zM557 556h44v36h-44zM611 556h44v36h-44zM665 556h44v36h-44zM719 556h44v36h-44zM773 556h44v36h-44zM827 556h44v36h-44zM881 556h44v36h-44zM935 556h44v36h-44zM989 556h44v36h-44zM1043 556h44v36h-44zM1097 556h44v36h-44zM1151 556h44v36h-44z" fill="#d9d9d9" opacity="0.48"/><path d="M395 592h44v8h-44zM449 592h44v8h-44zM503 592h44v8h-44zM557 592h44v8h-44zM611 592h44v8h-44zM665 592h44v8h-44zM719 592h44v8h-44zM773 592h44v8h-44zM827 592h44v8h-44zM881 592h44v8h-44zM935 592h44v8h-44zM989 592h44v8h-44zM1043 592h44v8h-44zM1097 592h44v8h-44zM1151 592h44v8h-44z" fill="#fff" opacity="0.48"/><path d="M310 597h49v41h-49zM372 597h49v41h-49zM433 597h49v41h-49zM494 597h49v41h-49zM555 597h49v41h-49zM616 597h49v41h-49zM678 597h49v41h-49zM739 597h49v41h-49zM800 597h49v41h-49zM861 597h49v41h-49zM922 597h49v41h-49zM984 597h49v41h-49zM1045 597h49v41h-49zM1106 597h49v41h-49zM1167 597h49v41h-49zM1228 597h49v41h-49z" fill="#d9d9d9" opacity="0.57"/><path d="M310 638h49v9h-49zM372 638h49v9h-49zM433 638h49v9h-49zM494 638h49v9h-49zM555 638h49v9h-49zM616 638h49v9h-49zM678 638h49v9h-49zM739 638h49v9h-49zM800 638h49v9h-49zM861 638h49v9h-49zM922 638h49v9h-49zM984 638h49v9h-49zM1045 638h49v9h-49zM1106 638h49v9h-49zM1167 638h49v9h-49zM1228 638h49v9h-49z" fill="#fff" opacity="0.57"/><path d="M219 638h55v46h-55zM287 638h55v46h-55zM355 638h55v46h-55zM424 638h55v46h-55zM492 638h55v46h-55zM561 638h55v46h-55zM629 638h55v46h-55zM697 638h55v46h-55zM766 638h55v46h-55zM834 638h55v46h-55zM903 638h55v46h-55zM971 638h55v46h-55zM1039 638h55v46h-55zM1108 638h55v46h-55zM1176 638h55v46h-55zM1245 638h55v46h-55zM1313 638h55v46h-55z" fill="#d9d9d9" opacity="0.66"/><path d="M219 684h55v10h-55zM287 684h55v10h-55zM355 684h55v10h-55zM424 684h55v10h-55zM492 684h55v10h-55zM561 684h55v10h-55zM629 684h55v10h-55zM697 684h55v10h-55zM766 684h55v10h-55zM834 684h55v10h-55zM903 684h55v10h-55zM971 684h55v10h-55zM1039 684h55v10h-55zM1108 684h55v10h-55zM1176 684h55v10h-55zM1245 684h55v10h-55zM1313 684h55v10h-55z" fill="#fff" opacity="0.66"/><path d="M120 680h61v50h-61zM195 680h61v50h-61zM271 680h61v50h-61zM346 680h61v50h-61zM422 680h61v50h-61zM498 680h61v50h-61zM573 680h61v50h-61zM649 680h61v50h-61zM724 680h61v50h-61zM800 680h61v50h-61zM876 680h61v50h-61zM951 680h61v50h-61zM1027 680h61v50h-61zM1102 680h61v50h-61zM1178 680h61v50h-61zM1254 680h61v50h-61zM1329 680h61v50h-61zM1405 680h61v50h-61z" fill="#d9d9d9" opacity="0.75"/><path d="M120 730h61v12h-61zM195 730h61v12h-61zM271 730h61v12h-61zM346 730h61v12h-61zM422 730h61v12h-61zM498 730h61v12h-61zM573 730h61v12h-61zM649 730h61v12h-61zM724 730h61v12h-61zM800 730h61v12h-61zM876 730h61v12h-61zM951 730h61v12h-61zM1027 730h61v12h-61zM1102 730h61v12h-61zM1178 730h61v12h-61zM1254 730h61v12h-61zM1329 730h61v12h-61zM1405 730h61v12h-61z" fill="#fff" opacity="0.75"/><path d="M13 721h67v55h-67zM96 721h67v55h-67zM179 721h67v55h-67zM262 721h67v55h-67zM345 721h67v55h-67zM427 721h67v55h-67zM510 721h67v55h-67zM593 721h67v55h-67zM676 721h67v55h-67zM759 721h67v55h-67zM841 721h67v55h-67zM924 721h67v55h-67zM1007 721h67v55h-67zM1090 721h67v55h-67zM1173 721h67v55h-67zM1255 721h67v55h-67zM1338 721h67v55h-67zM1421 721h67v55h-67zM1504 721h67v55h-67z" fill="#d9d9d9" opacity="0.84"/><path d="M13 776h67v13h-67zM96 776h67v13h-67zM179 776h67v13h-67zM262 776h67v13h-67zM345 776h67v13h-67zM427 776h67v13h-67zM510 776h67v13h-67zM593 776h67v13h-67zM676 776h67v13h-67zM759 776h67v13h-67zM841 776h67v13h-67zM924 776h67v13h-67zM1007 776h67v13h-67zM1090 776h67v13h-67zM1173 776h67v13h-67zM1255 776h67v13h-67zM1338 776h67v13h-67zM1421 776h67v13h-67zM1504 776h67v13h-67z" fill="#fff" opacity="0.84"/><path d="M-100 762h72v60h-72zM-10 762h72v60h-72zM80 762h72v60h-72zM170 762h72v60h-72zM260 762h72v60h-72zM350 762h72v60h-72zM440 762h72v60h-72zM530 762h72v60h-72zM620 762h72v60h-72zM710 762h72v60h-72zM800 762h72v60h-72zM890 762h72v60h-72zM980 762h72v60h-72zM1070 762h72v60h-72zM1160 762h72v60h-72zM1250 762h72v60h-72zM1340 762h72v60h-72zM1430 762h72v60h-72zM1520 762h72v60h-72zM1610 762h72v60h-72z" fill="#d9d9d9" opacity="0.93"/><path d="M-100 822h72v14h-72zM-10 822h72v14h-72zM80 822h72v14h-72zM170 822h72v14h-72zM260 822h72v14h-72zM350 822h72v14h-72zM440 822h72v14h-72zM530 822h72v14h-72zM620 822h72v14h-72zM710 822h72v14h-72zM800 822h72v14h-72zM890 822h72v14h-72zM980 822h72v14h-72zM1070 822h72v14h-72zM1160 822h72v14h-72zM1250 822h72v14h-72zM1340 822h72v14h-72zM1430 822h72v14h-72zM1520 822h72v14h-72zM1610 822h72v14h-72z" fill="#fff" opacity="0.93"/><path d="M-221 803h78v65h-78zM-123 803h78v65h-78zM-26 803h78v65h-78zM71 803h78v65h-78zM168 803h78v65h-78zM265 803h78v65h-78zM363 803h78v65h-78zM460 803h78v65h-78zM557 803h78v65h-78zM654 803h78v65h-78zM751 803h78v65h-78zM849 803h78v65h-78zM946 803h78v65h-78zM1043 803h78v65h-78zM1140 803h78v65h-78zM1237 803h78v65h-78zM1335 803h78v65h-78zM1432 803h78v65h-78zM1529 803h78v65h-78zM1626 803h78v65h-78zM1723 803h78v65h-78z" fill="#d9d9d9" opacity="0.95"/><path d="M-221 868h78v15h-78zM-123 868h78v15h-78zM-26 868h78v15h-78zM71 868h78v15h-78zM168 868h78v15h-78zM265 868h78v15h-78zM363 868h78v15h-78zM460 868h78v15h-78zM557 868h78v15h-78zM654 868h78v15h-78zM751 868h78v15h-78zM849 868h78v15h-78zM946 868h78v15h-78zM1043 868h78v15h-78zM1140 868h78v15h-78zM1237 868h78v15h-78zM1335 868h78v15h-78zM1432 868h78v15h-78zM1529 868h78v15h-78zM1626 868h78v15h-78zM1723 868h78v15h-78z" fill="#fff" opacity="0.95"/></g><g id="sc1"><rect width="1600" height="900" fill="url(#sg)"/><rect x="0" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="1548" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="62" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="1486" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="124" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="1424" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="186" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="1362" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="248" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="1300" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="310" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="1238" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="372" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="1176" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="434" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="1114" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.75"/><rect x="496" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><rect x="1052" y="0" width="52" height="640" fill="#2a2a2a" opacity="0.50"/><polygon points="560,0 640,0 760,640 440,640" fill="#fff" opacity=".16"/><polygon points="960,0 1040,0 1160,640 840,640" fill="#fff" opacity=".12"/><rect x="0" y="640" width="1600" height="260" fill="#0a0a0a"/><rect x="300" y="640" width="1000" height="10" fill="#bdbdbd"/><rect x="340" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.40"/><rect x="476" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.47"/><rect x="612" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.54"/><rect x="748" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.61"/><rect x="884" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.68"/><rect x="1020" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.75"/><rect x="1156" y="700" width="60" height="70" fill="#d9d9d9" opacity="0.82"/></g><g id="sc2"><rect width="1600" height="900" fill="url(#sg)"/><rect x="120" y="720" width="1500" height="68" fill="#2a2a2a"/><rect x="120" y="720" width="1500" height="6" fill="#fff" opacity=".6"/><path d="M160 734h52v38h-52zM272 734h52v38h-52zM384 734h52v38h-52zM496 734h52v38h-52zM608 734h52v38h-52zM720 734h52v38h-52zM832 734h52v38h-52zM944 734h52v38h-52zM1056 734h52v38h-52zM1168 734h52v38h-52zM1280 734h52v38h-52zM1392 734h52v38h-52z" fill="#bdbdbd" opacity="0.25"/><rect x="216" y="652" width="1404" height="68" fill="#2a2a2a"/><rect x="216" y="652" width="1404" height="6" fill="#fff" opacity=".6"/><path d="M256 666h52v38h-52zM368 666h52v38h-52zM480 666h52v38h-52zM592 666h52v38h-52zM704 666h52v38h-52zM816 666h52v38h-52zM928 666h52v38h-52zM1040 666h52v38h-52zM1152 666h52v38h-52zM1264 666h52v38h-52zM1376 666h52v38h-52zM1488 666h52v38h-52z" fill="#bdbdbd" opacity="0.32"/><rect x="312" y="584" width="1308" height="68" fill="#2a2a2a"/><rect x="312" y="584" width="1308" height="6" fill="#fff" opacity=".6"/><path d="M352 598h52v38h-52zM464 598h52v38h-52zM576 598h52v38h-52zM688 598h52v38h-52zM800 598h52v38h-52zM912 598h52v38h-52zM1024 598h52v38h-52zM1136 598h52v38h-52zM1248 598h52v38h-52zM1360 598h52v38h-52zM1472 598h52v38h-52z" fill="#bdbdbd" opacity="0.39"/><rect x="408" y="516" width="1212" height="68" fill="#2a2a2a"/><rect x="408" y="516" width="1212" height="6" fill="#fff" opacity=".6"/><path d="M448 530h52v38h-52zM560 530h52v38h-52zM672 530h52v38h-52zM784 530h52v38h-52zM896 530h52v38h-52zM1008 530h52v38h-52zM1120 530h52v38h-52zM1232 530h52v38h-52zM1344 530h52v38h-52zM1456 530h52v38h-52zM1568 530h52v38h-52z" fill="#bdbdbd" opacity="0.46"/><rect x="504" y="448" width="1116" height="68" fill="#2a2a2a"/><rect x="504" y="448" width="1116" height="6" fill="#fff" opacity=".6"/><path d="M544 462h52v38h-52zM656 462h52v38h-52zM768 462h52v38h-52zM880 462h52v38h-52zM992 462h52v38h-52zM1104 462h52v38h-52zM1216 462h52v38h-52zM1328 462h52v38h-52zM1440 462h52v38h-52zM1552 462h52v38h-52z" fill="#bdbdbd" opacity="0.53"/><rect x="600" y="380" width="1020" height="68" fill="#2a2a2a"/><rect x="600" y="380" width="1020" height="6" fill="#fff" opacity=".6"/><path d="M640 394h52v38h-52zM752 394h52v38h-52zM864 394h52v38h-52zM976 394h52v38h-52zM1088 394h52v38h-52zM1200 394h52v38h-52zM1312 394h52v38h-52zM1424 394h52v38h-52zM1536 394h52v38h-52z" fill="#bdbdbd" opacity="0.60"/><rect x="696" y="312" width="924" height="68" fill="#2a2a2a"/><rect x="696" y="312" width="924" height="6" fill="#fff" opacity=".6"/><path d="M736 326h52v38h-52zM848 326h52v38h-52zM960 326h52v38h-52zM1072 326h52v38h-52zM1184 326h52v38h-52zM1296 326h52v38h-52zM1408 326h52v38h-52zM1520 326h52v38h-52zM1632 326h52v38h-52z" fill="#bdbdbd" opacity="0.67"/><rect x="792" y="244" width="828" height="68" fill="#2a2a2a"/><rect x="792" y="244" width="828" height="6" fill="#fff" opacity=".6"/><path d="M832 258h52v38h-52zM944 258h52v38h-52zM1056 258h52v38h-52zM1168 258h52v38h-52zM1280 258h52v38h-52zM1392 258h52v38h-52zM1504 258h52v38h-52zM1616 258h52v38h-52z" fill="#bdbdbd" opacity="0.74"/><rect x="888" y="176" width="732" height="68" fill="#2a2a2a"/><rect x="888" y="176" width="732" height="6" fill="#fff" opacity=".6"/><path d="M928 190h52v38h-52zM1040 190h52v38h-52zM1152 190h52v38h-52zM1264 190h52v38h-52zM1376 190h52v38h-52zM1488 190h52v38h-52zM1600 190h52v38h-52zM1712 190h52v38h-52z" fill="#bdbdbd" opacity="0.81"/><polygon points="1100,0 1250,0 1500,360 900,360" fill="#fff" opacity=".1"/></g></defs></svg><div class="lbx" id="lbx" role="dialog" aria-modal="true"><div class="lbb lgs"><button class="xb" id="lb-x" aria-label="Close">×</button><div class="lbp" data-i="0" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc0"/></svg></div><div class="cap"><b class="serif" data-en="City Theater, Cairo" data-ar="مسرح المدينة، القاهرة"></b><p class="p" data-en="Egypt · 2023 · 820 seats" data-ar="مصر · 2023 · 820 مقعد"></p></div></div><div class="lbp" data-i="1" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc1"/></svg></div><div class="cap"><b class="serif" data-en="University Auditorium" data-ar="قاعة جامعية"></b><p class="p" data-en="Egypt · 2022 · 1,200 seats" data-ar="مصر · 2022 · 1,200 مقعد"></p></div></div><div class="lbp" data-i="2" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc2"/></svg></div><div class="cap"><b class="serif" data-en="Indoor Sports Hall" data-ar="صالة رياضية مغطاة"></b><p class="p" data-en="Saudi Arabia · 2024 · 2,400 seats" data-ar="السعودية · 2024 · 2,400 مقعد"></p></div></div><div class="lbp" data-i="3" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc0"/></svg></div><div class="cap"><b class="serif" data-en="Conference Centre" data-ar="مركز مؤتمرات"></b><p class="p" data-en="Saudi Arabia · 2023 · 640 seats" data-ar="السعودية · 2023 · 640 مقعد"></p></div></div><div class="lbp" data-i="4" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc0"/></svg></div><div class="cap"><b class="serif" data-en="Cultural Hall" data-ar="قاعة ثقافية"></b><p class="p" data-en="Egypt · 2021 · 450 seats" data-ar="مصر · 2021 · 450 مقعد"></p></div></div><div class="lbp" data-i="5" hidden><div class="art"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sc1"/></svg></div><div class="cap"><b class="serif" data-en="Lecture Hall Complex" data-ar="مجمع قاعات محاضرات"></b><p class="p" data-en="Egypt · 2024 · 980 seats" data-ar="مصر · 2024 · 980 مقعد"></p></div></div></div></div><script>(function(){
+var lb=document.getElementById('lbx'),last=null;
+function openL(i){last=document.activeElement;lb.querySelectorAll('.lbp').forEach(function(p){p.hidden=p.dataset.i!==String(i)});lb.classList.add('on');document.body.style.overflow='hidden';document.getElementById('lb-x').focus()}
+function closeL(){lb.classList.remove('on');document.body.style.overflow='';if(last&&last.focus)last.focus()}
+document.querySelectorAll('[data-lb]').forEach(function(c){c.addEventListener('click',function(){openL(c.dataset.lb)});c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openL(c.dataset.lb)}})});
+document.getElementById('lb-x').addEventListener('click',closeL);lb.addEventListener('click',function(e){if(e.target===lb)closeL()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeL()});
+})();</script><!--/OV-->
+<script id="mti-smooth-js">/* ===== MTI smooth layer ===== */
+(function(){
+  var d=document,root=d.documentElement,reduce=false;
+  try{reduce=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+
+  /* 1. scroll reveal */
+  var io=null;
+  function reveal(el){
+    el.classList.add('in');
+    var t=(parseFloat(el.style.transitionDelay)||0)*1000+950;
+    setTimeout(function(){el.style.transitionDelay='';el.classList.add('done')},t);
+  }
+  if('IntersectionObserver' in window&&!reduce){
+    io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);reveal(e.target)}})},{threshold:.12,rootMargin:'0px 0px -5% 0px'});
+  }
+  function watch(el){el.classList.remove('done');if(io)io.observe(el);else el.classList.add('in','done')}
+  window.__mtiWatch=watch;
+  d.querySelectorAll('.rise').forEach(function(el){var ad=el.style.animationDelay;if(ad)el.style.transitionDelay=ad;watch(el)});
+
+  /* 2. background videos fade in once they can play */
+  d.querySelectorAll('.vb').forEach(function(v){
+    var done=false;function ok(){if(!done){done=true;v.classList.add('ready')}}
+    if(v.readyState>=2)ok();
+    v.addEventListener('loadeddata',ok);v.addEventListener('playing',ok);
+    setTimeout(ok,2500);
+  });
+
+  /* 3. page-to-page transition */
+  d.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+    if((a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+    var u;try{u=new URL(a.href,location.href)}catch(x){return}
+    if(u.protocol!==location.protocol||u.host!==location.host)return;
+    if(u.pathname===location.pathname&&u.search===location.search)return;
+    if(!/\.html?$|\/$/.test(u.pathname))return;
+    e.preventDefault();root.classList.add('leaving');
+    setTimeout(function(){location.href=u.href},reduce?0:260);
+  });
+  addEventListener('pageshow',function(e){if(e.persisted)root.classList.remove('leaving')});
+
+  /* 4. language switch: fade content out, swap, fade back in */
+  var lb=d.getElementById('lang'),mn=d.querySelector('main'),pass=false;
+  if(lb&&mn&&!reduce){
+    lb.addEventListener('click',function(e){
+      if(pass){pass=false;requestAnimationFrame(function(){requestAnimationFrame(function(){mn.classList.remove('lswap')})});return}
+      e.stopImmediatePropagation();mn.classList.add('lswap');
+      setTimeout(function(){pass=true;lb.click()},200);
+    },true);
+  }
+
+  /* 5. filter chips / tabs: animate the newly shown items */
+  d.addEventListener('click',function(e){
+    if(!(e.target.closest&&e.target.closest('.chip,.tb')))return;
+    setTimeout(function(){
+      d.querySelectorAll('.pc:not([hidden]),.pnl:not([hidden])').forEach(function(el){
+        el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap');
+        el.addEventListener('animationend',function(){el.classList.remove('swap')},{once:true});
+      });
+    },0);
+  });
+})();
+</script>
+</body>
+</html>

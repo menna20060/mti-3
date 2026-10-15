@@ -1,0 +1,56 @@
+/* =====================================================================
+   MTI theme layer  ·  shared clarity fixes
+   Loaded after each page's own <style>. Dark only.
+   ===================================================================== */
+
+html{color-scheme:dark}
+
+/* ---------- consistency fix, both themes: project tiles were the only glass cards with square corners ---------- */
+.pc{border-radius:1rem}
+/* RTL: the seat count is dir=ltr so it stretched full width and sat on the opposite side from the title */
+.pc .n{align-self:flex-start}
+
+/* ---------- clarity fix, both themes: nav pill sat on a ~transparent glass, so page text showed through the links ---------- */
+.bar.lg{background:rgba(12,12,12,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+
+/* clarity fix, dark: the home hero subtitle ran over the bright part of the ribbon with almost no dimming */
+div[aria-hidden="true"][style*="rgba(0,0,0,.05)"]{background:rgba(0,0,0,.28)!important}
+#home .hin h1,
+#home .hin .p{text-shadow:0 1px 16px rgba(0,0,0,.55)}
+
+/* clarity fix, dark: footer / address text (white .4 and .6) measured 2.5–3.7:1 over the footer video; WCAG wants 4.5:1 */
+footer{color:rgba(255,255,255,.85)}
+.cl[style*="rgba(255,255,255,.6)"]{color:rgba(255,255,255,.9)!important}
+.pgs{color:rgba(255,255,255,.88)}
+/* clarity fix, dark: stat labels sat on the orange glow of the stats video, and the "how it works" headline on the bright ribbon */
+dl.lg{background:rgba(0,0,0,.42);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+dt{color:rgba(255,255,255,.8)}
+#cta .vb,
+#contact .vb{filter:brightness(.4) blur(2px)}
+#process .vb{filter:brightness(.7)}
+#process h2,
+#process .p{text-shadow:0 1px 18px rgba(0,0,0,.6)}
+
+/* =====================================================================
+   FX layer: scroll progress, parallax, header tuck, card spotlight, softer reveals
+   ===================================================================== */
+.mti-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200;pointer-events:none;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#8b7cff,#ff8fb1)}
+html[dir="rtl"] .mti-progress{transform-origin:right}
+/* section videos drift slower than the page; hero content eases out */
+html.fx .sec>.vb{transform:translate3d(0,var(--py,0px),0) scale(1.1)!important;will-change:transform}
+html.fx #home .hin{transform:translate3d(0,var(--hy,0px),0);opacity:var(--ho,1);will-change:transform,opacity}
+/* reveal: soft blur-in on top of the existing fade/slide */
+html.js .rise:not(.in){filter:blur(6px)}
+html.js .rise.in,html.js .rise.done{filter:none}
+html.js .rise{transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease),background-color .3s ease,border-color .3s ease}
+/* header tucks away on scroll down */
+html.fx header{transition:translate .6s cubic-bezier(.22,1,.36,1)}
+html.nav-hide header{translate:0 -150%}
+/* pointer spotlight inside cards */
+.mti-spot{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s ease;
+  background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.13),transparent 65%)}
+.card:hover>.mti-spot,.pc:hover>.mti-spot,.pcard:hover>.mti-spot{opacity:1}
+/* smoother interactive states */
+.btn,.gbtn,.chip,.tb,.links a,.pc,.pcard,.card{transition-timing-function:cubic-bezier(.22,1,.36,1)}
+.btn:active,.gbtn:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){.mti-progress,.mti-spot{display:none}html.fx .sec>.vb,html.fx #home .hin{transform:none!important;opacity:1}html.js .rise:not(.in){filter:none}}
